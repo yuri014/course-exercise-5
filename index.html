@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Trabalho</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: gainsboro;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bg-green-400">
+      <h1 class="text-center text-gray-800 p-4 uppercase lg:text-3xl sm:text-lg">
+        Calculadora Básica
+      </h1>
+    </header>
+
+    <!--* EXERCÍCIO 1 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Somando Valores
+      </h2>
+      <div class="flex flex-col lg:flex-row justify-around items-center mt-4">
+        <div class="input-field col s6">
+          <input step="any" autofocus id="firstSumValue" type="number" class="validate" />
+          <label for="firstSumValue">Valor 1</label>
+        </div>
+        <div class="input-field col s6">
+          <input step="any" id="secondSumValue" type="number" class="validate" />
+          <label for="secondSumValue">Valor 2</label>
+        </div>
+      </div>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="sumNumbers()"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Somar
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['firstSumValue', 'secondSumValue'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <p class="text-center text-gray-800 text-2xl mt-10">
+        Resultado: <span id="sumResult"></span>
+      </p>
+    </div>
+
+    <!--* EXERCÍCIO 2 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Média de Três Valores
+      </h2>
+      <div class="flex flex-col lg:flex-row justify-between items-center mt-4">
+        <div class="input-field col s6">
+          <input step="any" autofocus id="firstGrade" type="number" class="validate" />
+          <label for="firstGrade">Nota 1</label>
+        </div>
+        <div class="input-field col s6">
+          <input step="any" id="secondGrade" type="number" class="validate" />
+          <label for="secondGrade">Nota 2</label>
+        </div>
+        <div class="input-field col s6">
+          <input step="any" id="thirdGrade" type="number" class="validate" />
+          <label for="thirdGrade">Nota 3</label>
+        </div>
+      </div>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="gradesAverage()"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Calcular
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['firstGrade', 'secondGrade', 'thirdGrade'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <p class="text-center text-gray-800 text-2xl mt-10">
+        Média: <span id="averageResult"></span>
+      </p>
+    </div>
+
+    <!--* EXERCÍCIO 3 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Desconto de 10%
+      </h2>
+      <div class="flex flex-col lg:flex-row justify-center items-center mt-4">
+        <div class="input-field col s6">
+          <input step="any" autofocus id="priceToDiscount" type="number" class="validate" />
+          <label for="priceToDiscount">Preço do Produto</label>
+        </div>
+      </div>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="discountPrice(10, 'priceToDiscount', 'tenDiscountResult')"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Descontar
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['priceToDiscount'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <p class="text-center text-gray-800 text-2xl mt-10">
+        Preço com Desconto: <span id="tenDiscountResult"></span>
+      </p>
+    </div>
+
+    <!--* EXERCÍCIO 4 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Calculadora de Descontos
+      </h2>
+      <div class="flex flex-col lg:flex-row justify-around items-center mt-4">
+        <div class="input-field col s6">
+          <input step="any" autofocus id="price" type="number" class="validate" />
+          <label for="price">Preço do Produto</label>
+        </div>
+        <div class="input-field col s6">
+          <input step="any" id="discount" type="number" class="validate" />
+          <label for="discount">Percentual de Desconto</label>
+        </div>
+      </div>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="discountPrice(document.getElementById('discount').value, 'price', 'discountResult')"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Descontar
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['price', 'discount'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <p class="text-center text-gray-800 text-2xl mt-10">
+        Preço com Desconto: <span id="discountResult"></span>
+      </p>
+    </div>
+
+    <!--* EXERCÍCIO 5 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Inverter Valores
+      </h2>
+      <div class="flex flex-col lg:flex-row justify-around items-center mt-4">
+        <div class="input-field col s6">
+          <input autofocus id="firstValueToInvert" type="number" class="validate" />
+          <label for="firstValueToInvert">Valor A</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="secondValueToInvert" type="number" class="validate" />
+          <label for="secondValueToInvert">Valor B</label>
+        </div>
+      </div>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="invertValues()"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Inverter
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['firstValueToInvert', 'secondValueToInvert'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center text-center text-gray-800 text-2xl mt-10"
+      >
+        <div>Valor A: <span id="invertedValueOne"></span></div>
+        <br />
+        <div>Valor B: <span id="invertedValueTwo"></span></div>
+      </div>
+    </div>
+
+    <!--* EXERCÍCIO 6 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Calculadora de Parcelas
+      </h2>
+      <div class="flex flex-col lg:flex-row justify-around items-center mt-4">
+        <div class="input-field col s6">
+          <input autofocus id="totalInstallments" type="number" class="validate" />
+          <label for="totalInstallments">Total de Parcelas</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="paidInstallments" type="number" class="validate" />
+          <label for="paidInstallments">Parcelas Pagas</label>
+        </div>
+        <div class="input-field col s6">
+          <input step="any" id="installmentsValues" type="number" class="validate" />
+          <label for="installmentsValues">Valor das Parcelas (Fixo)</label>
+        </div>
+      </div>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="calculateInstallments()"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Calcular
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['totalInstallments', 'paidInstallments', 'installmentsValues'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center text-center text-gray-800 text-2xl mt-10"
+      >
+        <div>Saldo Devedor: <span id="balance"></span></div>
+        <br />
+        <div>Parcelas Restantes: <span id="remainingInstallments"></span></div>
+      </div>
+    </div>
+
+    <!--* EXERCÍCIO 7 *-->
+
+    <div class="container bg-white w-4/5 mx-auto p-8 rounded-md mt-8">
+      <h2 class="text-center text-gray-600 p-4 uppercase lg:text-2xl sm:text-lg">
+        Calculadora de Vendas de Picolé
+      </h2>
+      <table class="table-auto">
+        <thead>
+          <tr>
+            <th>Sabor</th>
+            <th>Preço (R$)</th>
+            <th>Quant. Vendas</th>
+            <th>Total Parcial</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frutas</td>
+            <td>2.50</td>
+            <td>
+              <div class="input-field col s6">
+                <input
+                  onchange="calculatePartialTotal('fruitAmount', 'fruitAmountPrice', 2.50)"
+                  id="fruitAmount"
+                  type="number"
+                  class="validate"
+                  min="0"
+                />
+                <label for="fruitAmount">Quantidade</label>
+              </div>
+            </td>
+            <td id="fruitAmountPrice">0</td>
+          </tr>
+          <tr>
+            <td>Cremosos</td>
+            <td>3.50</td>
+            <td>
+              <div class="input-field col s6">
+                <input
+                  onchange="calculatePartialTotal('creamyAmount', 'creamyAmountPrice', 3.50)"
+                  id="creamyAmount"
+                  type="number"
+                  class="validate"
+                />
+                <label for="creamyAmount">Quantidade</label>
+              </div>
+            </td>
+            <td id="creamyAmountPrice">0</td>
+          </tr>
+          <tr>
+            <td>Recheados</td>
+            <td>4.50</td>
+            <td>
+              <div class="input-field col s6">
+                <input
+                  onchange="calculatePartialTotal('stuffedAmount', 'stuffedAmountPrice', 4.50)"
+                  id="stuffedAmount"
+                  type="number"
+                  class="validate"
+                />
+                <label for="stuffedAmount">Quantidade</label>
+              </div>
+            </td>
+            <td id="stuffedAmountPrice">0</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="flex justify-evenly items-center mt-4">
+        <button
+          onclick="calculateSells()"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Calcular
+          <i class="material-icons right">send</i>
+        </button>
+        <button
+          onclick="cleaner(['fruitAmount', 'creamyAmount', 'stuffedAmount'])"
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Limpar
+          <i class="material-icons right">delete</i>
+        </button>
+      </div>
+      <div class="flex items-center justify-center text-center text-gray-800 text-2xl mt-10">
+        <div>Total de Vendas: <span id="totalSells"></span></div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <script src="script.js"></script>
+  </body>
+</html>
